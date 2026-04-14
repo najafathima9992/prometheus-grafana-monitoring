@@ -124,8 +124,8 @@ Grafana (Dashboards & Alerts)
 
 ## 🌐 Access URLs
 
-| Service       | URL                   |
-| ------------- | --------------------- |
+| Service       | URL                     |
+| ------------- | ---------------------   |
 | Application   | http://<server-ip>:3000 |
 | Grafana       | http://<server-ip>:3001 |
 | Prometheus    | http://<server-ip>:9090 |
