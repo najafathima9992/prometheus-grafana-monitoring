@@ -4,11 +4,10 @@ services:
 
   app:
     image: node:18
-    container_name: node-app
     working_dir: /app
     volumes:
       - ./app:/app
-    command: sh -c "npm install express prom-client && node app.js"
+    command: sh -c "npm init -y && npm install express prom-client && node server.js"
     ports:
       - "3000:3000"
 
@@ -25,7 +24,13 @@ services:
     container_name: grafana
     ports:
       - "3001:3000"
-
+    environment:
+      - GF_SMTP_ENABLED=true
+      - GF_SMTP_HOST=smtp.gmail.com:587
+      - GF_SMTP_USER=najafathimapt123@gmail.com
+      - GF_SMTP_PASSWORD=lkxt eoxz izuz mgqe
+      - GF_SMTP_FROM_ADDRESS=najafathimapt123@gmail.com
+      - GF_SMTP_FROM_NAME=Grafana
   node-exporter:
     image: prom/node-exporter
     container_name: node-exporter
