@@ -1,47 +1,52 @@
-🚀 Infrastructure & Container Monitoring using Prometheus & Grafana
+# 🚀 Infrastructure & Container Monitoring using Prometheus & Grafana
 
-📌 Project Overview
+## 📌 Project Overview
 
-This project demonstrates a production-style monitoring system for infrastructure and Docker containers using Prometheus and Grafana.
-It focuses on observability, enabling real-time insights into system performance and container behavior.
+This project demonstrates a **production-style monitoring system** for infrastructure and Docker containers using Prometheus and Grafana.
 
+It focuses on **observability**, enabling real-time insights into system performance and container behavior.
 
 ---
 
-##🏗️ Architecture
+## 🏗️ Architecture
 
+```text
 Docker Host (Linux Server)
    ├── Node Exporter (System Metrics)
    ├── cAdvisor (Container Metrics)
    ├── Prometheus (Metrics Collection)
    └── Grafana (Visualization & Alerts)
-   
+```
+
 ---
 
 ## 🛠️ Tech Stack
 
-### 📊 Monitoring
+### 📊 Monitoring Tools
 
-* Prometheus
-* Grafana
-* Node Exporter
-* cAdvisor
+* Prometheus → Metrics collection & storage
+* Grafana → Dashboards & alerting
 
-### 🐳 DevOps
+### 📦 Exporters
+
+* Node Exporter → System-level metrics
+* cAdvisor → Container-level metrics
+
+### 🐳 DevOps Tools
 
 * Docker
 * Docker Compose
 
 ---
 
-## 📦 Services & Containers
+## 📦 Containers Overview
 
-| Service       | Description                     | Port |
-| ------------- | ------------------------------- | ---- |
-| Prometheus    | Metrics collection              | 9090 |
-| Grafana       | Visualization & dashboards      | 3001 |
-| Node Exporter | System metrics (CPU, RAM, Disk) | 9100 |
-| cAdvisor      | Container metrics               | 8080 |
+| Container     | Purpose                   | Port |
+| ------------- | ------------------------- | ---- |
+| prometheus    | Collects & stores metrics | 9090 |
+| grafana       | Visualizes metrics        | 3001 |
+| node-exporter | System metrics            | 9100 |
+| cadvisor      | Container metrics         | 8080 |
 
 👉 Total Containers Running: **4**
 
@@ -49,71 +54,76 @@ Docker Host (Linux Server)
 
 ##  Node Exporter
 
-Node Exporter is a Prometheus exporter that collects **system-level metrics** such as:
+Node Exporter is a Prometheus exporter that collects **system-level metrics** from the host machine.
+
+### 📊 Metrics include:
 
 * CPU usage
 * Memory usage
-* Disk usage
+* Disk I/O
 * Network statistics
 
-It exposes metrics at:
+📍 Endpoint:
 
-```
+```bash
 http://<server-ip>:9100/metrics
 ```
 
-👉 Used to monitor the **host machine (server)**
+👉 Used for monitoring the **server/host machine**
 
 ---
 
 ##  cAdvisor
 
-cAdvisor (Container Advisor) monitors **Docker containers** and provides:
+cAdvisor (Container Advisor) monitors **Docker containers**.
+
+### 📊 Metrics include:
 
 * Container CPU usage
-* Memory consumption
-* Network usage
-* Disk I/O
+* Memory usage
+* Network traffic
+* Filesystem usage
 
-It exposes metrics at:
+📍 Endpoint:
 
-```
+```bash
 http://<server-ip>:8080/metrics
 ```
 
-👉 Used to monitor **individual containers**
+👉 Used for monitoring **container performance**
 
 ---
 
 ## 🔗 Monitoring Flow
 
-```
-Node Exporter → System Metrics
-cAdvisor → Container Metrics
-        ↓
-Prometheus (Scrapes Data)
-        ↓
-Grafana (Dashboards & Alerts)
+```text
+Node Exporter ─┐
+               ├──► Prometheus ───► Grafana ───► Alerts
+cAdvisor ──────┘
 ```
 
 ---
 
 ## 📊 Features
 
-* 📈 Real-time CPU, Memory, Disk monitoring
+* 📈 Real-time system monitoring
 * 📦 Container-level monitoring
-* 🚨 Alerting (CPU > 80%)
-* 📊 Custom dashboards in Grafana
+* 📊 Custom Grafana dashboards
+* 🚨 Alerting system (CPU threshold)
+* 🔍 PromQL-based querying
+* 🐳 Fully containerized setup
+
+---
 
 
 ## 🌐 Access URLs
 
-| Service       | URL                     |
-| ------------- | ---------------------   |
-| Grafana       | http://<server-ip>:3001 |
-| Prometheus    | http://<server-ip>:9090 |
-| Node Exporter | http://<server-ip>:9100 |
-| cAdvisor      | http://<server-ip>:8080 |
+| Service       | URL                   |
+| ------------- | --------------------- |
+| Grafana       | http://<server-ip>3001 |
+| Prometheus    | http://<server-ip>9090 |
+| Node Exporter | http://<server-ip>9100 |
+| cAdvisor      | http://<server-ip>8080 |
 
 ---
 
@@ -126,24 +136,24 @@ Grafana (Dashboards & Alerts)
 
 ---
 
-## 📊 Prometheus Queries (Examples)
+## 📊 Prometheus Queries
 
 ### CPU Usage
 
-```
+```promql
 100 - (avg(rate(node_cpu_seconds_total{mode="idle"}[1m])) * 100)
 ```
 
 ### Memory Usage
 
-```
+```promql
 (node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / node_memory_MemTotal_bytes * 100
 ```
 
-### Request Rate
+### Service Health
 
-```
-rate(http_requests_total[1m])
+```promql
+up
 ```
 
 ---
@@ -157,31 +167,31 @@ Configured alerts in Grafana:
 
 ---
 
-## 🐳 Docker Compose Highlights
+## 🎯 Use Cases
 
-* Multi-container architecture
-* Isolated services
-* Scalable design
-* Easy deployment
+* Infrastructure monitoring
+* Docker container monitoring
+* Performance analysis
+* Alerting & incident detection
 
 ---
 
-## 💼 Real-World Use Case
+## 💼 Real-World Relevance
 
-This project simulates how companies monitor:
+This project reflects how organizations monitor:
 
 * Cloud servers
-* Microservices
-* Containerized applications
+* Containers (Docker/Kubernetes)
+* Infrastructure performance
 
 ---
 
-## 🎯 Key Learnings
+## 🧠 Key Learnings
 
-* Prometheus metrics collection
-* Grafana dashboard creation
-* Docker-based deployments
-* Monitoring & alerting setup
+* Prometheus metrics & PromQL
+* Grafana dashboards & alerting
+* Exporters (Node Exporter & cAdvisor)
+* Docker-based monitoring setup
+* Observability principles
 
 ---
-
