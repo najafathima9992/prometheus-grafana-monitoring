@@ -1,37 +1,24 @@
-# 🚀 Full Stack Monitoring System with Prometheus & Grafana
+🚀 Infrastructure & Container Monitoring using Prometheus & Grafana
 
-## 📌 Project Overview
+📌 Project Overview
 
-This project demonstrates a **production-style monitoring system** for a containerized full-stack application. It includes system-level and container-level monitoring using Prometheus and Grafana, along with a modern frontend and backend application.
+This project demonstrates a production-style monitoring system for infrastructure and Docker containers using Prometheus and Grafana.
+It focuses on observability, enabling real-time insights into system performance and container behavior.
+
 
 ---
 
-## 🏗️ Architecture
+##🏗️ Architecture
 
-```
-Frontend (HTML, CSS, JavaScript)
-        ↓
-Backend (Node.js + Express API)
-        ↓
-Docker Containers
-        ↓
-----------------------------------
-Monitoring Stack:
-----------------------------------
-Node Exporter → System Metrics
-cAdvisor → Container Metrics
-Prometheus → Data Collection
-Grafana → Visualization & Alerts
-```
-
+Docker Host (Linux Server)
+   ├── Node Exporter (System Metrics)
+   ├── cAdvisor (Container Metrics)
+   ├── Prometheus (Metrics Collection)
+   └── Grafana (Visualization & Alerts)
+   
 ---
 
 ## 🛠️ Tech Stack
-
-### 💻 Application
-
-* HTML, CSS, JavaScript (Frontend)
-* Node.js + Express (Backend)
 
 ### 📊 Monitoring
 
@@ -51,13 +38,12 @@ Grafana → Visualization & Alerts
 
 | Service       | Description                     | Port |
 | ------------- | ------------------------------- | ---- |
-| App (Node.js) | Full-stack application          | 3000 |
 | Prometheus    | Metrics collection              | 9090 |
 | Grafana       | Visualization & dashboards      | 3001 |
 | Node Exporter | System metrics (CPU, RAM, Disk) | 9100 |
 | cAdvisor      | Container metrics               | 8080 |
 
-👉 Total Containers Running: **5**
+👉 Total Containers Running: **4**
 
 ---
 
@@ -116,8 +102,6 @@ Grafana (Dashboards & Alerts)
 
 * 📈 Real-time CPU, Memory, Disk monitoring
 * 📦 Container-level monitoring
-* 🛍️ Full-stack e-commerce style application
-* 🔐 Authentication (JWT-based)
 * 🚨 Alerting (CPU > 80%)
 * 📊 Custom dashboards in Grafana
 
@@ -126,7 +110,6 @@ Grafana (Dashboards & Alerts)
 
 | Service       | URL                     |
 | ------------- | ---------------------   |
-| Application   | http://<server-ip>:3000 |
 | Grafana       | http://<server-ip>:3001 |
 | Prometheus    | http://<server-ip>:9090 |
 | Node Exporter | http://<server-ip>:9100 |
@@ -198,7 +181,6 @@ This project simulates how companies monitor:
 * Prometheus metrics collection
 * Grafana dashboard creation
 * Docker-based deployments
-* Full-stack application integration
 * Monitoring & alerting setup
 
 ---
